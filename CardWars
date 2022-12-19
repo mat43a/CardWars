@@ -1,0 +1,53 @@
+using System;
+using System.Numerics;
+ 
+class cardWars
+{
+    static void Main()
+    {
+        int numberOfGames = int.Parse(Console.ReadLine());
+        string[] drawnCards = new string[6 * numberOfGames];
+        for (int i = 0; i < 6 * numberOfGames; i++)
+        {
+            drawnCards[i] = Console.ReadLine();
+        }
+ 
+        int round = 6;
+        int counter = 0;
+        int ownedCard = 3;
+        int firstPlayerGamesWon = 0;
+        int secondPlayerGamesWon = 0;
+        BigInteger firstPlayerScore = 0;
+        BigInteger secondPlayerScore = 0;
+        for (int i = 0; i < numberOfGames; i++)
+        {
+            int firstPlayerRoundScore = 0;
+            int secondPlayerRoundScore = 0;
+            bool hasFirstX = false;
+            bool hasSecondX = false;
+            while (counter != round)
+            {
+                if (counter < ownedCard)
+                {
+                    switch (drawnCards[counter])
+                    {
+                        case "2": firstPlayerRoundScore += 10; break;
+                        case "3": firstPlayerRoundScore += 9; break;
+                        case "4": firstPlayerRoundScore += 8; break;
+                        case "5": firstPlayerRoundScore += 7; break;
+                        case "6": firstPlayerRoundScore += 6; break;
+                        case "7": firstPlayerRoundScore += 5; break;
+                        case "8": firstPlayerRoundScore += 4; break;
+                        case "9": firstPlayerRoundScore += 3; break;
+                        case "10": firstPlayerRoundScore += 2; break;
+                        case "J": firstPlayerRoundScore += 11; break;
+                        case "Q": firstPlayerRoundScore += 12; break;
+                        case "K": firstPlayerRoundScore += 13; break;
+                        case "A": firstPlayerRoundScore += 1; break;
+                        case "X": hasFirstX = true; break;
+                        case "Y": firstPlayerScore -= 200; break;
+                        case "Z": firstPlayerScore *= 2; break;
+                        default:
+                            break;
+                    }
+                }
