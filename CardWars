@@ -51,3 +51,78 @@ class cardWars
                             break;
                     }
                 }
+                else
+                {
+                    switch (drawnCards[counter])
+                    {
+                        case "2": secondPlayerRoundScore += 10; break;
+                        case "3": secondPlayerRoundScore += 9; break;
+                        case "4": secondPlayerRoundScore += 8; break;
+                        case "5": secondPlayerRoundScore += 7; break;
+                        case "6": secondPlayerRoundScore += 6; break;
+                        case "7": secondPlayerRoundScore += 5; break;
+                        case "8": secondPlayerRoundScore += 4; break;
+                        case "9": secondPlayerRoundScore += 3; break;
+                        case "10": secondPlayerRoundScore += 2; break;
+                        case "J": secondPlayerRoundScore += 11; break;
+                        case "Q": secondPlayerRoundScore += 12; break;
+                        case "K": secondPlayerRoundScore += 13; break;
+                        case "A": secondPlayerRoundScore += 1; break;
+                        case "X": hasSecondX = true; break;
+                        case "Y": secondPlayerScore -= 200; break;
+                        case "Z": secondPlayerScore *= 2; break;
+                        
+                        
+                        default:
+                            break;
+                    }
+                }
+                counter++;
+            }
+            if (hasFirstX == true && hasSecondX == true)
+            {
+                firstPlayerScore += 50;
+                secondPlayerScore += 50;
+            }
+            else if (hasFirstX && hasSecondX == false)
+            {
+                Console.WriteLine("X card drawn! Player one wins the match!");
+                return;
+            }
+            else if (hasFirstX == false && hasSecondX)
+            {
+                Console.WriteLine("X card drawn! Player two wins the match!");
+                return;
+            }
+            if (secondPlayerRoundScore > firstPlayerRoundScore)
+            {
+                secondPlayerScore += secondPlayerRoundScore;
+                secondPlayerGamesWon++;
+            }
+            else if (secondPlayerRoundScore < firstPlayerRoundScore)
+            {
+                firstPlayerScore += firstPlayerRoundScore;
+                firstPlayerGamesWon++;
+            }
+            round += 6;
+            ownedCard += 6;
+        }
+        if (secondPlayerScore == firstPlayerScore)
+        {
+            Console.WriteLine("It's a tie!");
+            Console.WriteLine("Score: {0}", firstPlayerScore);
+        }
+        else if (secondPlayerScore > firstPlayerScore)
+        {
+            Console.WriteLine("Second player wins!");
+            Console.WriteLine("Score: {0}", secondPlayerScore);
+            Console.WriteLine("Games won: {0}", secondPlayerGamesWon);
+        }
+        else if (firstPlayerScore > secondPlayerScore)
+        {
+            Console.WriteLine("First player wins!");
+            Console.WriteLine("Score: {0}", firstPlayerScore);
+            Console.WriteLine("Games won: {0}", firstPlayerGamesWon);
+        }
+    }
+}
